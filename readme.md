@@ -1,6 +1,6 @@
 # Web of Life
 
-## [Live Demo]()
+## [Live Demo](https://web-of-life.netlify.app/)
 
 Game of life like program to simulate `pops` occupying `habitats`
 ![Screenshot](screenshot.gif)
