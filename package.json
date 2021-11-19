@@ -1,0 +1,44 @@
+{
+  "name": "game-of-life",
+  "version": "0.0.1",
+  "author": "Kaspars Putniņš",
+  "repository": "https://github.com/djentelmenis/web-of-life.git",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview",
+    "lint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx,json}\"",
+    "lint-types": "tsc --noEmit",
+    "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "update": "yarn upgrade-interactive",
+    "audit-npm": "yarn npm audit"
+  },
+  "dependencies": {
+    "nanoid": "^3.1.30",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "@vitejs/plugin-react": "^1.0.0",
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb-typescript": "^16.0.0",
+    "eslint-config-claims-intake": "^3.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jest": "^25.2.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.27.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-testing-library": "^5.0.0",
+    "prettier": "^2.4.1",
+    "sass": "^1.43.4",
+    "typescript": "^4.3.2",
+    "vite": "^2.6.4"
+  }
+}
