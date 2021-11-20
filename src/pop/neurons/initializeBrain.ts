@@ -18,35 +18,41 @@ const initializeBrain = ({
   numberOfMiddleNeurons,
   numberOfSynapses,
 }: InitializeBrainParams): Brain => {
-  const initialNeuronValues = {
-    value: 0,
-    synapse: {
-      source: null,
-      target: null,
-      weight: 0,
-    },
-  };
-
   const brain: Brain = {
     inputNeurons: [
       ...Object.values(InputNeuronType).map((neuronType) => ({
         id: nanoid(),
         type: neuronType,
-        ...initialNeuronValues,
+        value: 0,
+        synapse: {
+          source: null,
+          target: null,
+          weight: 0,
+        },
       })),
     ],
     outputNeurons: [
       ...Object.values(OutputNeuronType).map((neuronType) => ({
         id: nanoid(),
         type: neuronType,
-        ...initialNeuronValues,
+        value: 0,
+        synapse: {
+          source: null,
+          target: null,
+          weight: 0,
+        },
       })),
     ],
     middleNeurons: [
       ...new Array(numberOfMiddleNeurons).fill(0).map(() => ({
         id: nanoid(),
         type: MiddleNeuronType.MIDDLE_NEURON,
-        ...initialNeuronValues,
+        value: 0,
+        synapse: {
+          source: null,
+          target: null,
+          weight: 0,
+        },
       })),
     ],
   };
