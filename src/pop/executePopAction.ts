@@ -1,7 +1,7 @@
 import type State from "../state/state";
 import type Pop from "./pop";
-import { PopAction } from "./pop";
 import { movePopDown, movePopLeft, movePopRight, movePopUp } from "./movePop";
+import { OutputNeuronType } from "./neurons/neurons";
 
 interface ExecutePopActionParams {
   state: State;
@@ -10,20 +10,20 @@ interface ExecutePopActionParams {
 
 const executePopAction = ({ state, pop }: ExecutePopActionParams) => {
   switch (pop.action) {
-    case PopAction.MOVE_UP:
+    case OutputNeuronType.MOVE_UP:
       movePopUp({ state, pop });
       break;
-    case PopAction.MOVE_DOWN:
+    case OutputNeuronType.MOVE_DOWN:
       movePopDown({ state, pop });
       break;
-    case PopAction.MOVE_RIGHT:
+    case OutputNeuronType.MOVE_RIGHT:
       movePopRight({ state, pop });
       break;
-    case PopAction.MOVE_LEFT:
+    case OutputNeuronType.MOVE_LEFT:
       movePopLeft({ state, pop });
       break;
 
-    case PopAction.WAIT:
+    case OutputNeuronType.WAIT:
     default:
       break;
   }

@@ -1,10 +1,11 @@
 import { nanoid } from "nanoid";
 
-import type Habitat from "../../habitat/habitat";
-import type Pop from "../../pop/pop";
-import { PopAction } from "../../pop/pop";
-import findFreeHabitat from "../../habitat/findFreeHabitat";
-import { generateRandomInteger } from "../../utils";
+import { generateRandomInteger } from "../utils";
+import type Habitat from "../habitat/habitat";
+import type Pop from "./pop";
+import findFreeHabitat from "../habitat/findFreeHabitat";
+import initializeBrain from "./neurons/initializeBrain";
+import { OutputNeuronType } from "./neurons/neurons";
 
 interface GeneratePopsParams {
   population: number;
@@ -32,8 +33,12 @@ const generatePops = ({
       const pop: Pop = {
         id: nanoid(),
         habitat,
-        action: PopAction.WAIT,
+        action: OutputNeuronType.WAIT,
         color: generateRandomInteger({ max: 16777215 }),
+        brain: initializeBrain({
+          numberOfMiddleNeurons: window.webOfLife.options.numberOfMiddleNeurons,
+          numberOfSynapses: window.webOfLife.options.numberOfSynapses,
+        }),
       };
 
       pops.push(pop);

@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import OPTIONS from "./constants/options";
+import InitialOptions from "./constants/options";
 import App from "./App";
 
 import "./index.scss";
 
 window.webOfLife = {
-  options: OPTIONS,
+  options: InitialOptions,
   initialState: null,
   shouldSessionBeKilled: false,
   isSessionInProgress: false,

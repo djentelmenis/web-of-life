@@ -1,10 +1,9 @@
 import tick from "../tick/tick";
 
 import type State from "../../state/state";
-
-import generateHabitats from "./generateHabitats";
-import generatePops from "./generatePops";
-import populateHabitats from "./populateHabitats";
+import generateHabitats from "../../habitat/generateHabitats";
+import populateHabitats from "../../habitat/populateHabitats";
+import generatePops from "../../pop/generatePops";
 
 const init = (canvas: HTMLCanvasElement) => {
   const { population, worldSize, settlementAttemptLimit } =
@@ -25,6 +24,7 @@ const init = (canvas: HTMLCanvasElement) => {
       worldSize,
       settlementAttemptLimit,
     }),
+    tick: 0,
   };
 
   state = populateHabitats(state);

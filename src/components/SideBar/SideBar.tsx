@@ -13,6 +13,15 @@ const SideBar: FunctionComponent = () => {
   const [population, setPopulation] = useState(
     window.webOfLife.options.population
   );
+  const [epochLength, setEpochLength] = useState(
+    window.webOfLife.options.epochLength
+  );
+  const [numberOfMiddleNeurons, setNumberOfMiddleNeurons] = useState(
+    window.webOfLife.options.numberOfMiddleNeurons
+  );
+  const [numberOfSynapses, setNumberOfSynapses] = useState(
+    window.webOfLife.options.numberOfSynapses
+  );
   const [tickInterval, setTickInterval] = useState(
     window.webOfLife.options.tickInterval
   );
@@ -48,6 +57,26 @@ const SideBar: FunctionComponent = () => {
     setPopulation(value);
   };
 
+  const handleEpochLengthChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(event.target.value);
+    window.webOfLife.options.epochLength = value;
+    setEpochLength(value);
+  };
+  const handleNumberOfMiddleNeuronsChange = (
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = parseInt(event.target.value);
+    window.webOfLife.options.numberOfMiddleNeurons = value;
+    setNumberOfMiddleNeurons(value);
+  };
+  const handleNumberOfSynapsesChange = (
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = parseInt(event.target.value);
+    window.webOfLife.options.numberOfSynapses = value;
+    setNumberOfSynapses(value);
+  };
+
   const handleTickIntervalChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value);
     window.webOfLife.options.tickInterval = value;
@@ -64,11 +93,12 @@ const SideBar: FunctionComponent = () => {
         End!
       </button>
       <div className={classes.Group}>
-        <h2>Initial parameters</h2>
+        <h2>World parameters</h2>
         <div>
           <div>
             <span>World size - </span>
             <span>{worldSize}</span>
+            <span> habitats</span>
             <div>
               <input
                 onChange={handleWorldSizeChange}
@@ -84,14 +114,62 @@ const SideBar: FunctionComponent = () => {
           <div>
             <span>Initial population - </span>
             <span>{population}</span>
+            <span> pops</span>
             <div>
               <input
                 onChange={handlePopulationChange}
                 type="range"
                 min={1}
                 max={worldSize * worldSize}
-                step={1}
                 value={population}
+                disabled={isSessionInProgress}
+              />
+            </div>
+          </div>
+          <div>
+            <span>Epoch length - </span>
+            <span>{epochLength}</span>
+            <span> ticks</span>
+            <div>
+              <input
+                onChange={handleEpochLengthChange}
+                type="range"
+                min={1}
+                max={300}
+                value={epochLength}
+                disabled={isSessionInProgress}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className={classes.Group}>
+        <h2>Pop parameters</h2>
+        <div>
+          <div>
+            <span>Number of middle neurons - </span>
+            <span>{numberOfMiddleNeurons}</span>
+            <div>
+              <input
+                onChange={handleNumberOfMiddleNeuronsChange}
+                type="range"
+                min={0}
+                max={40}
+                value={numberOfMiddleNeurons}
+                disabled={isSessionInProgress}
+              />
+            </div>
+          </div>
+          <div>
+            <span>Number of synapses - </span>
+            <span>{numberOfSynapses}</span>
+            <div>
+              <input
+                onChange={handleNumberOfSynapsesChange}
+                type="range"
+                min={1}
+                max={100}
+                value={numberOfSynapses}
                 disabled={isSessionInProgress}
               />
             </div>
@@ -124,6 +202,10 @@ const SideBar: FunctionComponent = () => {
           <div>
             <span>FPS - </span>
             <span id={ElementId.FPS} />
+          </div>
+          <div>
+            <span>Tick - </span>
+            <span id={ElementId.TICK} />
           </div>
         </div>
       </div>

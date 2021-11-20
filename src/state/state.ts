@@ -5,6 +5,7 @@ interface State {
   canvas: HTMLCanvasElement;
   habitats: Habitat[][];
   pops: Pop[];
+  tick: number;
 }
 
 export default State;

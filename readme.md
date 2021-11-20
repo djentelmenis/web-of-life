@@ -2,36 +2,63 @@
 
 ## [Live Demo](https://web-of-life.netlify.app/)
 
-Game of life like program to simulate `pops` occupying `habitats`
+Game of life like program to simulate `pops` with `neural networks` occupying `habitats`
+
 ![Screenshot](screenshot.gif)
 
 ## Features
 
 - Generates `habitat` squares and their inhabiting `pops`
-- Runs the `simulation` where on each tick `pops` execute an action
-- Currently pops randomly execute on of these actions:
+- Generates a `neural network` brain for each `pop` with:
+  - Sensory input `neurons`
+  - Hidden middle layer `neurons`
+  - Output action `neurons`
+- Runs the `simulation` where on each tick `pops`:
+  - Fire `synapses` through input `neurons`
+  - Execute an action corresponding to the output `neuron` with the highest value
+- Current input `neurons`:
+  - Oscilloscope
+  - Is up free
+  - Is down free
+  - Is left free
+  - Is right free
+  - Latitude
+  - Longitude
+  - Age
+  - Random
+- Current action `neurons`:
   - Wait
   - Move up
   - Move down
   - Move left
   - Move right
 - Configurable initial simulation parameters:
-  - World size
-  - Initial population
+  - World parameters:
+    - World size
+    - Initial population
+    - Epoch length (number of ticks to simulate)
+  - Pop parameters:
+    - Number of middle `neurons` in hidden `neuron` layer
+    - Number of `synapses` (connections) between `neurons`
 - Configurable settings:
   - Time interval between ticks (0 will update the simulation on each frame)
-- Reports simulation satus:
+- Reports simulation status:
   - Actual rendered FPS (Updates interval 1 second)
+  - Current epoch tick (Updates interval 1 second)
 
 ### Technical
 
 - Written in `TypeScript`
 - Uses `React` and `sass` for the UI elements
 - Renders the simulation in `<canvas />` component
-- Experimented writing the simulation and rendering engine in functional programming
+- Experimented writing the simulation and rendering engine with functional programming
 
 ## Development
 
 - clone this repo
 - install npm packages - `yarn`
 - run locally - `yarn dev`
+
+## License
+
+- MIT

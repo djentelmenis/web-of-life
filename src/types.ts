@@ -6,6 +6,9 @@ export interface Options {
   settlementAttemptLimit: number;
   tickInterval: number;
   fpsInterval: number;
+  epochLength: number;
+  numberOfMiddleNeurons: number;
+  numberOfSynapses: number;
 }
 
 export interface WebOfLife {

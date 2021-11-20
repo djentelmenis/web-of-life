@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
 
-import type Habitat from "../../habitat/habitat";
+import type Habitat from "./habitat";
 
 const generateHabitats = (worldSize: number): Habitat[][] => {
   const squares: Habitat[][] = [];

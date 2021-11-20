@@ -28,10 +28,14 @@ const tick = ({
 
   let newFrame: number;
   if (shouldUpdateFps) {
-    const FPSCounter = document.getElementById(ElementId.FPS);
-    if (FPSCounter) {
+    const fpsCounter = document.getElementById(ElementId.FPS);
+    const tickCounter = document.getElementById(ElementId.TICK);
+    if (fpsCounter) {
       const fps = Math.round((frame / deltaFpsTime) * 1000).toString();
-      FPSCounter.innerHTML = fps;
+      fpsCounter.innerHTML = fps;
+    }
+    if (tickCounter) {
+      tickCounter.innerHTML = state.tick.toString();
     }
     newFrame = 0;
   } else {
@@ -40,7 +44,10 @@ const tick = ({
 
   draw(newState);
 
-  if (!window.webOfLife.shouldSessionBeKilled) {
+  if (
+    !window.webOfLife.shouldSessionBeKilled &&
+    state.tick < window.webOfLife.options.epochLength
+  ) {
     window.requestAnimationFrame(() =>
       tick({
         state: newState,
@@ -51,6 +58,15 @@ const tick = ({
         frame: newFrame,
       })
     );
+  } else {
+    const fpsCounter = document.getElementById(ElementId.FPS);
+    const tickCounter = document.getElementById(ElementId.TICK);
+    if (fpsCounter) {
+      fpsCounter.innerHTML = "0";
+    }
+    if (tickCounter) {
+      tickCounter.innerHTML = state.tick.toString();
+    }
   }
 };
 

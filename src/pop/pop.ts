@@ -1,18 +1,12 @@
 import type Habitat from "../habitat/habitat";
-
-export enum PopAction {
-  WAIT,
-  MOVE_UP,
-  MOVE_DOWN,
-  MOVE_LEFT,
-  MOVE_RIGHT,
-}
+import type { Brain, OutputNeuronType } from "./neurons/neurons";
 
 interface Pop {
   id: string;
   habitat: Habitat;
-  action: PopAction;
+  action: OutputNeuronType;
   color: number;
+  brain: Brain;
 }
 
 export default Pop;

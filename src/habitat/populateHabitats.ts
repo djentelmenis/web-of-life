@@ -1,4 +1,4 @@
-import type State from "../../state/state";
+import type State from "../state/state";
 
 const populateHabitats = (state: State): State => {
   state.pops.forEach((pop) => {
