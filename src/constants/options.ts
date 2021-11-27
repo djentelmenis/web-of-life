@@ -6,7 +6,7 @@ const InitialOptions: Options = {
   settlementAttemptLimit: 1000,
   tickInterval: 0,
   fpsInterval: 1000,
-  epochLength: 150,
+  epochLength: 300,
   numberOfMiddleNeurons: 3,
   numberOfSynapses: 6,
 };

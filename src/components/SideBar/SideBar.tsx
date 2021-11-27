@@ -1,9 +1,9 @@
 import { ChangeEvent, FunctionComponent, useState } from "react";
 
 import ElementId from "../../constants/elementId";
+import init from "../../engine/init/init";
 
 import classes from "./SideBar.module.scss";
-import init from "../../engine/init/init";
 
 const SideBar: FunctionComponent = () => {
   const [isSessionInProgress, setIsSessionInProgress] = useState(false);
@@ -29,7 +29,9 @@ const SideBar: FunctionComponent = () => {
   const handleStart = () => {
     window.webOfLife.shouldSessionBeKilled = false;
     setIsSessionInProgress(true);
-    const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+    const canvas = document.getElementById(
+      ElementId.CANVAS
+    ) as HTMLCanvasElement;
     if (canvas) {
       init(canvas);
     }
@@ -134,8 +136,8 @@ const SideBar: FunctionComponent = () => {
               <input
                 onChange={handleEpochLengthChange}
                 type="range"
-                min={1}
-                max={300}
+                min={10}
+                max={1000}
                 value={epochLength}
                 disabled={isSessionInProgress}
               />

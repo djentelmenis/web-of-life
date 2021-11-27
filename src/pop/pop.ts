@@ -7,6 +7,7 @@ interface Pop {
   action: OutputNeuronType;
   color: number;
   brain: Brain;
+  selected: boolean;
 }
 
 export default Pop;

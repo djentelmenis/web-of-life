@@ -39,6 +39,7 @@ const generatePops = ({
           numberOfMiddleNeurons: window.webOfLife.options.numberOfMiddleNeurons,
           numberOfSynapses: window.webOfLife.options.numberOfSynapses,
         }),
+        selected: false,
       };
 
       pops.push(pop);

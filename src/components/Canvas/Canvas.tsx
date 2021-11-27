@@ -1,5 +1,6 @@
 import { FunctionComponent, useEffect, useState } from "react";
 
+import ElementId from "../../constants/elementId";
 import { SCREEN_OFFSET } from "../../constants/constants";
 
 const Canvas: FunctionComponent = () => {
@@ -14,7 +15,9 @@ const Canvas: FunctionComponent = () => {
   };
 
   useEffect(() => {
-    const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+    const canvas = document.getElementById(
+      ElementId.CANVAS
+    ) as HTMLCanvasElement;
 
     if (canvas) {
       window.addEventListener("resize", onResize);
@@ -27,7 +30,7 @@ const Canvas: FunctionComponent = () => {
 
   return (
     <div style={{ padding: SCREEN_OFFSET / 2 }}>
-      <canvas id="canvas" width={windowSize} height={windowSize} />
+      <canvas id={ElementId.CANVAS} width={windowSize} height={windowSize} />
     </div>
   );
 };
