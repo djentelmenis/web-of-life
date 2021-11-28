@@ -11,6 +11,7 @@ window.webOfLife = {
   initialState: null,
   shouldSessionBeKilled: false,
   isSessionInProgress: false,
+  graph: null,
 };
 
 ReactDOM.render(

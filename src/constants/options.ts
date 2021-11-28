@@ -4,7 +4,7 @@ const InitialOptions: Options = {
   worldSize: 32,
   population: 64,
   settlementAttemptLimit: 1000,
-  tickInterval: 0,
+  tickInterval: 1000,
   fpsInterval: 1000,
   epochLength: 300,
   numberOfMiddleNeurons: 3,

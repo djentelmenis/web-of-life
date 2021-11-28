@@ -1,3 +1,4 @@
+import { Graph } from "@antv/g6-pc";
 import { ChangeEvent, FunctionComponent, useState } from "react";
 
 import ElementId from "../../constants/elementId";
@@ -5,7 +6,15 @@ import init from "../../engine/init/init";
 
 import classes from "./SideBar.module.scss";
 
-const SideBar: FunctionComponent = () => {
+interface SideBarProps {
+  g6Graph: Graph | null;
+  gameBoard: HTMLCanvasElement | null;
+}
+
+const SideBar: FunctionComponent<SideBarProps> = ({
+  g6Graph,
+  gameBoard,
+}: SideBarProps) => {
   const [isSessionInProgress, setIsSessionInProgress] = useState(false);
   const [worldSize, setWorldSize] = useState(
     window.webOfLife.options.worldSize
@@ -29,11 +38,9 @@ const SideBar: FunctionComponent = () => {
   const handleStart = () => {
     window.webOfLife.shouldSessionBeKilled = false;
     setIsSessionInProgress(true);
-    const canvas = document.getElementById(
-      ElementId.CANVAS
-    ) as HTMLCanvasElement;
-    if (canvas) {
-      init(canvas);
+
+    if (gameBoard && g6Graph) {
+      init(gameBoard, g6Graph);
     }
   };
 
@@ -88,12 +95,14 @@ const SideBar: FunctionComponent = () => {
   return (
     <div className={classes.SideBar}>
       <h1>Web of Life</h1>
-      <button onClick={handleStart} disabled={isSessionInProgress}>
+
+      <button onClick={handleStart} disabled={isSessionInProgress || !g6Graph}>
         Start!
       </button>
       <button onClick={handleEnd} disabled={!isSessionInProgress}>
         End!
       </button>
+
       <div className={classes.Group}>
         <h2>World parameters</h2>
         <div>
@@ -145,11 +154,12 @@ const SideBar: FunctionComponent = () => {
           </div>
         </div>
       </div>
+
       <div className={classes.Group}>
         <h2>Pop parameters</h2>
         <div>
           <div>
-            <span>Number of middle neurons - </span>
+            <span>Middle neurons - </span>
             <span>{numberOfMiddleNeurons}</span>
             <div>
               <input
@@ -163,7 +173,7 @@ const SideBar: FunctionComponent = () => {
             </div>
           </div>
           <div>
-            <span>Number of synapses - </span>
+            <span>Synapses - </span>
             <span>{numberOfSynapses}</span>
             <div>
               <input
@@ -178,19 +188,20 @@ const SideBar: FunctionComponent = () => {
           </div>
         </div>
       </div>
+
       <div className={classes.Group}>
         <h2>Active settings</h2>
         <div>
           <div>
             <span>Tick interval - </span>
-            <span>{tickInterval}</span>
-            <span> MS </span>
+            <span>{tickInterval / 1000}</span>
+            <span> S </span>
             <div>
               <input
                 onChange={handleTickIntervalChange}
                 type="range"
                 min={0}
-                max={1000}
+                max={10000}
                 step={1}
                 value={tickInterval}
               />

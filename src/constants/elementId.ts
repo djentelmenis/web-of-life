@@ -1,5 +1,5 @@
 enum ElementId {
-  CANVAS = "CANVAS",
+  GAME_BOARD = "GAME_BOARD",
   FPS = "FPS",
   TICK = "TICK",
 }

@@ -1,3 +1,4 @@
+import type { Graph } from "@antv/g6";
 import State from "./state/state";
 
 export interface Options {
@@ -16,6 +17,7 @@ export interface WebOfLife {
   initialState: State | null;
   shouldSessionBeKilled: boolean;
   isSessionInProgress: boolean;
+  graph: Graph | null;
 }
 
 declare global {

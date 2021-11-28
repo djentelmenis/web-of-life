@@ -13,6 +13,9 @@ Game of life like program to simulate `pops` with `neural networks` occupying `h
   - Sensory input `neurons`
   - Hidden middle layer `neurons`
   - Output action `neurons`
+  - `Synapses` between the `neurons` with random weight values
+- Visualizes the selected `pops` brain as a layered graph
+  - Select a `pop` by left clicking on it after the simulation has begun
 - Runs the `simulation` where on each tick `pops`:
   - Fire `synapses` through input `neurons`
   - Execute an action corresponding to the output `neuron` with the highest value
@@ -44,7 +47,7 @@ Game of life like program to simulate `pops` with `neural networks` occupying `h
   - Time interval between ticks (0 will update the simulation on each frame)
 - Reports simulation status:
   - Actual rendered FPS (Updates interval 1 second)
-  - Current epoch tick (Updates interval 1 second)
+  - Current epoch tick (Updates interval each tick)
 
 ### Technical
 
@@ -52,6 +55,7 @@ Game of life like program to simulate `pops` with `neural networks` occupying `h
 - Uses `React` and `sass` for the UI elements
 - Renders the simulation in `<canvas />` component
 - Experimented writing the simulation and rendering engine with functional programming
+- Renders the `neural network` with [G6](https://g6.antv.vision/en) graph visualization library
 
 ## Development
 

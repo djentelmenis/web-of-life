@@ -5,6 +5,7 @@ import {
   MessageManager,
   SENDER,
 } from "canvas-input-manager";
+import type { Graph } from "@antv/g6";
 
 import type State from "../../state/state";
 import tick from "../tick/tick";
@@ -12,9 +13,9 @@ import generateHabitats from "../../habitat/generateHabitats";
 import populateHabitats from "../../habitat/populateHabitats";
 import generatePops from "../../pop/generatePops";
 
-import handleCanvasClick from "./handleCanvasClick";
+import handleCanvasClick from "../handlers/handleCanvasClick";
 
-const init = (canvas: HTMLCanvasElement) => {
+const init = (canvas: HTMLCanvasElement, graph: Graph) => {
   const { population, worldSize, settlementAttemptLimit } =
     window.webOfLife.options;
 
@@ -43,7 +44,7 @@ const init = (canvas: HTMLCanvasElement) => {
   MessageManager.subscribe(
     InputEventMessage.MOUSE_CLICK,
     (message: Message<SENDER.INPUT_MANAGER, PointerEvent>) =>
-      handleCanvasClick({ message, habitats, pops })
+      handleCanvasClick({ message, habitats, pops, graph })
   );
 
   window.webOfLife.initialState = state;
