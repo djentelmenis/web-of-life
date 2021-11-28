@@ -1,4 +1,4 @@
-import { Graph } from "@antv/g6-pc";
+import { Graph } from "@antv/g6";
 import { ChangeEvent, FunctionComponent, useState } from "react";
 
 import ElementId from "../../constants/elementId";
