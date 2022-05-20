@@ -31,6 +31,7 @@ const handleCanvasClick = ({
   if (inhabitant) {
     inhabitant.selected = true;
     graph.read(getGraphFromBrain(inhabitant.brain));
+    graph.fitView();
   } else {
     graph.read({});
   }

@@ -6,11 +6,7 @@ import {
   useRef,
   useState,
 } from "react";
-import type { Graph } from "@antv/g6";
-// TODO change to regular library import when bug is fixed https://github.com/antvis/G6/issues/3284
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import G6 from "@antv/g6/dist/g6.min";
+import G6, { Graph } from "@antv/g6";
 
 import { calculateBrainMapSize } from "../../utils";
 
@@ -49,9 +45,6 @@ const BrainMap: FunctionComponent<BrainMapProps> = ({
 
   useEffect(() => {
     if (canvasRef.current) {
-      /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-      /* eslint-disable @typescript-eslint/no-unsafe-call */
-      /* eslint-disable @typescript-eslint/no-unsafe-member-access */
       const graph = new G6.Graph({
         container: canvasRef.current,
         width: canvasSize,
@@ -100,7 +93,6 @@ const BrainMap: FunctionComponent<BrainMapProps> = ({
         },
       });
       window.webOfLife.graph = graph;
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       setG6Graph(graph);
     }
   }, []);
