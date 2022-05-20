@@ -6,6 +6,7 @@ interface State {
   habitats: Habitat[][];
   pops: Pop[];
   tick: number;
+  epoch: number;
 }
 
 export default State;

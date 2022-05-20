@@ -52,14 +52,21 @@ const tick = ({
 
   draw(newState);
 
-  window.requestAnimationFrame(() =>
-    tick({
-      state: newState,
-      previousUpdateTime: shouldUpdateState ? currentTime : previousUpdateTime,
-      previousFpsTime: shouldUpdateFps ? currentTime : previousFpsTime,
-      frame: newFrame,
-    })
-  );
+  if (
+    state.tick < window.webOfLife.options.epochLength &&
+    !window.webOfLife.shouldSessionBeKilled
+  ) {
+    window.requestAnimationFrame(() => {
+      tick({
+        state: newState,
+        previousUpdateTime: shouldUpdateState
+          ? currentTime
+          : previousUpdateTime,
+        previousFpsTime: shouldUpdateFps ? currentTime : previousFpsTime,
+        frame: newFrame,
+      });
+    });
+  }
 };
 
 export default tick;

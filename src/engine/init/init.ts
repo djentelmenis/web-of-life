@@ -8,6 +8,7 @@ import {
 import type { Graph } from "@antv/g6";
 
 import type State from "../../state/state";
+import ElementId from "../../constants/elementId";
 import tick from "../tick/tick";
 import generateHabitats from "../../habitat/generateHabitats";
 import populateHabitats from "../../habitat/populateHabitats";
@@ -36,6 +37,7 @@ const init = (canvas: HTMLCanvasElement, graph: Graph) => {
     habitats,
     pops,
     tick: 0,
+    epoch: 0,
   };
 
   state = populateHabitats(state);
@@ -49,6 +51,11 @@ const init = (canvas: HTMLCanvasElement, graph: Graph) => {
 
   window.webOfLife.initialState = state;
   window.webOfLife.isSessionInProgress = true;
+
+  const epochCounter = document.getElementById(ElementId.EPOCH);
+  if (epochCounter) {
+    epochCounter.innerHTML = state.epoch.toString();
+  }
 
   const initialTime = new Date();
   tick({

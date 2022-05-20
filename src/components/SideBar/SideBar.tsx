@@ -194,14 +194,14 @@ const SideBar: FunctionComponent<SideBarProps> = ({
         <div>
           <div>
             <span>Tick interval - </span>
-            <span>{tickInterval / 1000}</span>
-            <span> S </span>
+            <span>{tickInterval}</span>
+            <span> MS </span>
             <div>
               <input
                 onChange={handleTickIntervalChange}
                 type="range"
                 min={0}
-                max={10000}
+                max={1000}
                 step={1}
                 value={tickInterval}
               />
@@ -219,6 +219,10 @@ const SideBar: FunctionComponent<SideBarProps> = ({
           <div>
             <span>Tick - </span>
             <span id={ElementId.TICK} />
+          </div>
+          <div>
+            <span>Epoch - </span>
+            <span id={ElementId.EPOCH} />
           </div>
         </div>
       </div>

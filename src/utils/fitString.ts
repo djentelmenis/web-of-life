@@ -1,7 +1,4 @@
-// TODO change to regular library import when bug is fixed https://github.com/antvis/G6/issues/3284
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import G6 from "@antv/g6/dist/g6.min";
+import { Util } from "@antv/g6";
 
 import { ELLIPSIS } from "../constants/constants";
 import { NEWLINE } from "../constants/regex";
@@ -9,7 +6,7 @@ import { NEWLINE } from "../constants/regex";
 export const getLetterWidth = (letter: string, fontSize: number): number =>
   /* eslint-disable @typescript-eslint/no-unsafe-member-access */
   /* eslint-disable @typescript-eslint/no-unsafe-call */
-  G6.Util.getLetterWidth(letter, fontSize) as number;
+  Util.getLetterWidth(letter, fontSize) as number;
 /* eslint-enable @typescript-eslint/no-unsafe-member-access */
 /* eslint-enable @typescript-eslint/no-unsafe-call */
 
