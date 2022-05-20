@@ -1,7 +1,9 @@
 import type State from "../../state/state";
+
 import clearFrame from "./clearFrame";
 import drawHabitats from "./drawHabitats";
 import drawPops from "./drawPops";
+import drawDeathZone from "./drawDeathZone";
 
 const draw = (state: State) => {
   const { worldSize } = window.webOfLife.options;
@@ -13,6 +15,12 @@ const draw = (state: State) => {
 
   if (brush) {
     clearFrame({ brush, screenSize });
+    drawDeathZone({
+      brush,
+      worldSize,
+      habitatSize,
+      screenSize,
+    });
     drawHabitats({
       brush,
       worldSize,

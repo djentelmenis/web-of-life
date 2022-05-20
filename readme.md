@@ -16,9 +16,12 @@ Game of life like program to simulate `pops` with `neural networks` occupying `h
   - `Synapses` between the `neurons` with random weight values
 - Visualizes the selected `pops` brain as a layered graph
   - Select a `pop` by left clicking on it after the simulation has begun
-- Runs the `simulation` where on each tick `pops`:
+- Runs the simulation of an `epoch` where on each tick `pops`:
   - Fire `synapses` through input `neurons`
   - Execute an action corresponding to the output `neuron` with the highest value
+- After the limit of ticks reached:
+  - Simulation of `epoch` is done
+  - All of the `pop` remaining in the kill zone (red area) are culled
 - Current input `neurons`:
   - Oscilloscope
   - Is up free

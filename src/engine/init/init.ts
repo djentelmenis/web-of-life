@@ -14,6 +14,8 @@ import tick from "../tick/tick";
 import generateHabitats from "../../habitat/generateHabitats";
 import populateHabitats from "../../habitat/populateHabitats";
 import generatePops from "../../pop/generatePops";
+import resettlePops from "../../pop/resettlePops";
+import cullPops from "../../pop/cullPops";
 
 import handleCanvasClick from "../handlers/handleCanvasClick";
 
@@ -38,12 +40,28 @@ const init = ({
   }
 
   const habitats = generateHabitats(worldSize);
-  const pops = generatePops({
-    population,
+
+  const previousPops = epochs.at(-1)?.pops || [];
+
+  const survivedPops = cullPops({ pops: previousPops, worldSize });
+
+  const resettledPops = resettlePops({
+    pops: survivedPops,
     habitats,
     worldSize,
     settlementAttemptLimit,
   });
+
+  const newPops = epochs.length
+    ? []
+    : generatePops({
+        population,
+        habitats,
+        worldSize,
+        settlementAttemptLimit,
+      });
+
+  const pops = [...resettledPops, ...newPops];
 
   let state: State = {
     canvas,
