@@ -40,6 +40,7 @@ Game of life like program to simulate `pops` with `neural networks` occupying `h
     - World size
     - Initial population
     - Epoch length (number of ticks to simulate)
+    - Number of epochs to be run
   - Pop parameters:
     - Number of middle `neurons` in hidden `neuron` layer
     - Number of `synapses` (connections) between `neurons`
