@@ -3,6 +3,8 @@ enum ElementId {
   FPS = "FPS",
   TICK = "TICK",
   EPOCH = "EPOCH",
+  CULLED_IN_EPOCH = "CULLED_IN_EPOCH",
+  SURVIVOR_RATE = "SURVIVOR_RATE",
 }
 
 export default ElementId;

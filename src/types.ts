@@ -11,6 +11,7 @@ export interface Options {
   numberOfEpochs: number;
   numberOfMiddleNeurons: number;
   numberOfSynapses: number;
+  allowReproduction: boolean;
 }
 
 export interface WebOfLife {

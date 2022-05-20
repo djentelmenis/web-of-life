@@ -34,6 +34,9 @@ const SideBar: FunctionComponent<SideBarProps> = ({
   const [numberOfSynapses, setNumberOfSynapses] = useState(
     window.webOfLife.options.numberOfSynapses
   );
+  const [allowReproduction, setAllowReproduction] = useState(
+    window.webOfLife.options.allowReproduction
+  );
   const [tickInterval, setTickInterval] = useState(
     window.webOfLife.options.tickInterval
   );
@@ -101,6 +104,14 @@ const SideBar: FunctionComponent<SideBarProps> = ({
     const value = parseInt(event.target.value);
     window.webOfLife.options.numberOfSynapses = value;
     setNumberOfSynapses(value);
+  };
+
+  const handleAllowReproductionChange = (
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
+    const { checked } = event.target;
+    window.webOfLife.options.allowReproduction = checked;
+    setAllowReproduction(checked);
   };
 
   const handleTickIntervalChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -217,6 +228,17 @@ const SideBar: FunctionComponent<SideBarProps> = ({
               />
             </div>
           </div>
+          <div>
+            <span>Allow reproduction</span>
+            <div>
+              <input
+                onChange={handleAllowReproductionChange}
+                type="checkbox"
+                checked={allowReproduction}
+                disabled={isSessionInProgress}
+              />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -254,6 +276,14 @@ const SideBar: FunctionComponent<SideBarProps> = ({
           <div>
             <span>Epoch - </span>
             <span id={ElementId.EPOCH} />
+          </div>
+          <div>
+            <span>Culled in epoch - </span>
+            <span id={ElementId.CULLED_IN_EPOCH} />
+          </div>
+          <div>
+            <span>Survivor rate - </span>
+            <span id={ElementId.SURVIVOR_RATE} />
           </div>
         </div>
       </div>

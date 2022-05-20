@@ -16,6 +16,7 @@ import populateHabitats from "../../habitat/populateHabitats";
 import generatePops from "../../pop/generatePops";
 import resettlePops from "../../pop/resettlePops";
 import cullPops from "../../pop/cullPops";
+import reproducePops from "../../pop/reproducePops";
 
 import handleCanvasClick from "../handlers/handleCanvasClick";
 
@@ -41,18 +42,7 @@ const init = ({
 
   const habitats = generateHabitats(worldSize);
 
-  const previousPops = epochs.at(-1)?.pops || [];
-
-  const survivedPops = cullPops({ pops: previousPops, worldSize });
-
-  const resettledPops = resettlePops({
-    pops: survivedPops,
-    habitats,
-    worldSize,
-    settlementAttemptLimit,
-  });
-
-  const newPops = epochs.length
+  const initialPops = epochs.length
     ? []
     : generatePops({
         population,
@@ -60,8 +50,25 @@ const init = ({
         worldSize,
         settlementAttemptLimit,
       });
+  const previousPops = epochs.at(-1)?.pops || [];
+  const survivedPops = cullPops({ pops: previousPops, worldSize, population });
+  const resettledPops = resettlePops({
+    pops: survivedPops,
+    habitats,
+    worldSize,
+    settlementAttemptLimit,
+  });
+  const newPops = window.webOfLife.options.allowReproduction
+    ? reproducePops({
+        parentPops: resettledPops,
+        population: population - initialPops.length - survivedPops.length,
+        habitats,
+        worldSize,
+        settlementAttemptLimit,
+      })
+    : [];
 
-  const pops = [...resettledPops, ...newPops];
+  const pops = [...initialPops, ...resettledPops, ...newPops];
 
   let state: State = {
     canvas,
