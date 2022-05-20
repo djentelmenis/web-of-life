@@ -8,6 +8,7 @@ export interface Options {
   tickInterval: number;
   fpsInterval: number;
   epochLength: number;
+  numberOfEpochs: number;
   numberOfMiddleNeurons: number;
   numberOfSynapses: number;
 }
@@ -15,6 +16,7 @@ export interface Options {
 export interface WebOfLife {
   options: Options;
   initialState: State | null;
+  epochs: State[];
   shouldSessionBeKilled: boolean;
   isSessionInProgress: boolean;
   graph: Graph | null;

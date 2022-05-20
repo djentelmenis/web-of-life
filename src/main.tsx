@@ -9,6 +9,7 @@ import "./index.scss";
 window.webOfLife = {
   options: InitialOptions,
   initialState: null,
+  epochs: [],
   shouldSessionBeKilled: false,
   isSessionInProgress: false,
   graph: null,

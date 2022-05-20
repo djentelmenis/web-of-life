@@ -25,6 +25,9 @@ const SideBar: FunctionComponent<SideBarProps> = ({
   const [epochLength, setEpochLength] = useState(
     window.webOfLife.options.epochLength
   );
+  const [numberOfEpochs, setNumberOfEpochs] = useState(
+    window.webOfLife.options.numberOfEpochs
+  );
   const [numberOfMiddleNeurons, setNumberOfMiddleNeurons] = useState(
     window.webOfLife.options.numberOfMiddleNeurons
   );
@@ -40,7 +43,13 @@ const SideBar: FunctionComponent<SideBarProps> = ({
     setIsSessionInProgress(true);
 
     if (gameBoard && g6Graph) {
-      init(gameBoard, g6Graph);
+      window.webOfLife.epochs = [];
+      init({
+        canvas: gameBoard,
+        graph: g6Graph,
+        epochs: [],
+        setIsSessionInProgress,
+      });
     }
   };
 
@@ -71,6 +80,13 @@ const SideBar: FunctionComponent<SideBarProps> = ({
     window.webOfLife.options.epochLength = value;
     setEpochLength(value);
   };
+
+  const handleNumberOfEpochChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(event.target.value);
+    window.webOfLife.options.numberOfEpochs = value;
+    setNumberOfEpochs(value);
+  };
+
   const handleNumberOfMiddleNeuronsChange = (
     event: ChangeEvent<HTMLInputElement>
   ) => {
@@ -78,6 +94,7 @@ const SideBar: FunctionComponent<SideBarProps> = ({
     window.webOfLife.options.numberOfMiddleNeurons = value;
     setNumberOfMiddleNeurons(value);
   };
+
   const handleNumberOfSynapsesChange = (
     event: ChangeEvent<HTMLInputElement>
   ) => {
@@ -148,6 +165,20 @@ const SideBar: FunctionComponent<SideBarProps> = ({
                 min={10}
                 max={1000}
                 value={epochLength}
+                disabled={isSessionInProgress}
+              />
+            </div>
+          </div>
+          <div>
+            <span>Number of epochs - </span>
+            <span>{numberOfEpochs}</span>
+            <div>
+              <input
+                onChange={handleNumberOfEpochChange}
+                type="range"
+                min={1}
+                max={100}
+                value={numberOfEpochs}
                 disabled={isSessionInProgress}
               />
             </div>

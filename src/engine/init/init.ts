@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import {
   InputEventMessage,
   InputManager,
@@ -16,7 +17,19 @@ import generatePops from "../../pop/generatePops";
 
 import handleCanvasClick from "../handlers/handleCanvasClick";
 
-const init = (canvas: HTMLCanvasElement, graph: Graph) => {
+interface initParams {
+  canvas: HTMLCanvasElement;
+  graph: Graph;
+  epochs: State[];
+  setIsSessionInProgress: Dispatch<SetStateAction<boolean>>;
+}
+
+const init = ({
+  canvas,
+  graph,
+  epochs,
+  setIsSessionInProgress,
+}: initParams) => {
   const { population, worldSize, settlementAttemptLimit } =
     window.webOfLife.options;
 
@@ -37,7 +50,7 @@ const init = (canvas: HTMLCanvasElement, graph: Graph) => {
     habitats,
     pops,
     tick: 0,
-    epoch: 0,
+    epoch: epochs.length,
   };
 
   state = populateHabitats(state);
@@ -54,7 +67,7 @@ const init = (canvas: HTMLCanvasElement, graph: Graph) => {
 
   const epochCounter = document.getElementById(ElementId.EPOCH);
   if (epochCounter) {
-    epochCounter.innerHTML = state.epoch.toString();
+    epochCounter.innerHTML = (state.epoch + 1).toString();
   }
 
   const initialTime = new Date();
@@ -63,6 +76,7 @@ const init = (canvas: HTMLCanvasElement, graph: Graph) => {
     previousUpdateTime: initialTime,
     previousFpsTime: initialTime,
     frame: 0,
+    setIsSessionInProgress,
   });
 };
 
